@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>22</java.version>
-		<cucumber.version>7.15.0</cucumber.version>
+		<cucumber.version>7.32.0</cucumber.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -88,26 +88,31 @@
 		</dependency>
 
 		<dependency>
-		    <groupId>io.cucumber</groupId>
+			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>io.cucumber</groupId>
+			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-spring</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
-		    <groupId>io.cucumber</groupId>
+			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-suite</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -132,9 +137,26 @@
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default-test</id>
+						<configuration>
+							<systemPropertyVariables>
+								<cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>
+								<cucumber.features>${cucumber.features}</cucumber.features>
+							</systemPropertyVariables>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

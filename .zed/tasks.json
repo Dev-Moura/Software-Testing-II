@@ -1,0 +1,26 @@
+[
+  {
+    "label": "Cucumber: rodar todos os testes (Maven)",
+    "command": "mvn",
+    "args": ["test"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "save": "all"
+  },
+  {
+    "label": "Cucumber: rodar feature atual",
+    "command": "mvn",
+    "args": ["test", "-Dcucumber.features=$ZED_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "save": "all"
+  },
+  {
+    "label": "Cucumber: rodar por tag selecionada",
+    "command": "mvn",
+    "args": ["test", "-Dcucumber.filter.tags=${ZED_SELECTED_TEXT:@smoke}"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "use_new_terminal": false,
+    "save": "all"
+  }
+]
